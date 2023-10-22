@@ -26,4 +26,6 @@ DB_URL=mongodb://mongodburl.example.com:portnumber
 
 ## Resources
 - Hack School https://docs.google.com/document/d/1dLoP3bCB4UyhnCQR577R_zqo8Dfioc9asYsfmBuhv0I/edit
+- Trello  https://trello.com/b/CbMUkLnM/hack-team-1
+- 
   
