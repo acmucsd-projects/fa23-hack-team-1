@@ -4,16 +4,16 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const config = require('./config');
 const usersRouter = require('./routes/users');
-const foodModel = require('./models/food');
-const router = require('./api');
+const foodRouter = require('./routes/foodRoute');
+const workoutRouter = require('./routes/workoutsRoute');
 const app = express();
-
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/users', usersRouter);
-app.use('/api', router);
+app.use('/routes', usersRouter);
+app.use('/routes', foodRouter);
+app.use('/routes', workoutRouter);
 
 dotenv.config();
 

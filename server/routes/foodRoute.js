@@ -10,7 +10,7 @@ router.get('/food', async (req, res) =>{
 router.post('/food', async (req, res) =>{
     const { food } = req.body;
     const {name, calories, fat,cholesterol, sodium, carbohydrates, fiber, sugar, protein} = food;
-    if (!name){
+    if (!name || !calories || !fat || !cholesterol || !sodium || !carbohydrates || !fiber || !sugar || !protein){
         res.status(400).json({error: "Invalid Input"});
     }
     else{
@@ -18,5 +18,6 @@ router.post('/food', async (req, res) =>{
         res.status(200).json({newFood});
     }
 });
+
 
 module.exports = router;
