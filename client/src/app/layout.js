@@ -1,5 +1,6 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Navbar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,9 +10,24 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const pageStyle = {
+    maxWidth: '48rem',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    padding: '1rem',
+  };
+  const childrenStyle = {
+    margin: '2rem',
+  }
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div style={pageStyle}>
+          <Navbar />
+          <div style={childrenStyle}>{children}</div>
+        </div>
+      </body>
     </html>
   )
 }

@@ -1,0 +1,19 @@
+.containerStyle { 
+    padding: 1 rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #718096;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+.titleStyle {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.editStyle {
+    text-decoration: none;
+}

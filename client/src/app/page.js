@@ -1,9 +1,10 @@
 import React from 'react'
+import Entry from '@/components/Entry'
 
 export default function Home() {
   return (
-    <main>
-      <h1>food</h1>
-    </main>
+    <>
+      <Entry />
+    </>
   )
 }
