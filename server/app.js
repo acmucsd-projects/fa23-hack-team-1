@@ -7,13 +7,16 @@ const usersRouter = require('./routes/users');
 const foodRouter = require('./routes/foodRoute');
 const workoutRouter = require('./routes/workoutsRoute');
 const app = express();
+const cors = require('cors');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use('/routes', usersRouter);
 app.use('/routes', foodRouter);
 app.use('/routes', workoutRouter);
+
 
 dotenv.config();
 
