@@ -2,7 +2,7 @@ const express = require('express');
 const foodModel = require('../models/food');
 const router = express.Router();
 
-router.get('/food/:id', async (req, res) =>{
+router.get('/:id', async (req, res) =>{
     try{
         const { id } = req.params;
         const foods = await foodModel.findById(id).exec();
@@ -14,7 +14,7 @@ router.get('/food/:id', async (req, res) =>{
     }
 });
 
-router.get('/food', async (req, res) =>{
+router.get('/', async (req, res) =>{
     try{
         const foods = await foodModel.find().exec();
         res.status(200).json({foods});
@@ -25,7 +25,7 @@ router.get('/food', async (req, res) =>{
     }
 });
 
-router.post('/food', async (req, res) =>{
+router.post('/', async (req, res) =>{
     const { food } = req.body;
     const {name, calories, fat,cholesterol, sodium, carbohydrates, fiber, sugar, protein} = food;
     if (!name || !calories || !fat || !cholesterol || !sodium || !carbohydrates || !fiber || !sugar || !protein){
@@ -37,7 +37,7 @@ router.post('/food', async (req, res) =>{
     }
 });
 
-router.put('/food/:id', async (req, res) =>{
+router.put('/:id', async (req, res) =>{
     try {
         const {name, calories, fat,cholesterol, sodium, carbohydrates, fiber, sugar, protein} = food;
 
@@ -56,7 +56,7 @@ router.put('/food/:id', async (req, res) =>{
     }
 })
 
-router.delete('/food/:id', async (req, res) =>{
+router.delete('/:id', async (req, res) =>{
     try{
         const { id } = req.params;
 

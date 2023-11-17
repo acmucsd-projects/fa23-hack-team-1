@@ -2,13 +2,13 @@ const express = require('express');
 const workoutModel = require('../models/workouts');
 const router = express.Router();
 
-router.get('/workouts', async (req, res) =>{
+router.get('/', async (req, res) =>{
     const workouts = await workoutModel.find().exec();
     res.status(200).json({workouts});
 });
 
 
-router.post('/workouts', async (req, res) =>{
+router.post('/', async (req, res) =>{
     const { workout } = req.body;
     const {name, repetitions, sets, weight} = workout;
     if (!name || !repetitions || !sets || !weight){
