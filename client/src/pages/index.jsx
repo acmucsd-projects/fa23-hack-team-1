@@ -1,15 +1,21 @@
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
-import logo from '../assets/favicon.ico';
-import Calendar from '../components/calendarcomp/Calendar';
+// ./pages/index.js
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-export default function Home() {
+const HomePage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to the login page when the component mounts
+    router.push('/login');
+  }, []);
+
   return (
-    <div className={styles.main}>
-      <div className={styles.welcome}>
-        <h2>Take a look at your calendar</h2>
-        <Calendar/>
-      </div>
+    <div>
+      <h1>Welcome to the Home Page!</h1>
+      {/* Optional content for the home page */}
     </div>
   );
-}
+};
+
+export default HomePage;

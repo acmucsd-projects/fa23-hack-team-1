@@ -1,11 +1,11 @@
 const express = require('express');
 const { response } = require('../app');
-const userModel = require('../models/user');
+const User = require('../models/user');
 const router = express.Router();
 
 /* GET users listing. */
 router.get("/register", async(req, res) => {
-  const users = await userModel.find().exec(); 
+  const users = await User.find().exec(); 
   res.status(200).json({users});
 });
 
@@ -19,13 +19,13 @@ router.post("/register", async (req, res) => {
     //create modal box to warn about empty
     console.log("Cannot have empty fields");
   } 
-  else if (await userModel.findOne({username: newUsername})){
+  else if (await User.findOne({username: newUsername})){
     res.json({message: "exist"});
     //handle existing user credentials by creating modal box saying username taken
     
     console.log("username already exist!")
   } else {
-    const newUser = await userModel.create({
+    const newUser = await User.create({
       username:newUsername,
       password:newPassword,
     });
@@ -44,7 +44,7 @@ router.delete('/:userId', async (req, res) => {
     const userId = req.params.userId;
 
     // Check if the user with the given ID exists
-    const user = await userModel.findById(userId);
+    const user = await User.findById(userId);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -60,5 +60,18 @@ router.delete('/:userId', async (req, res) => {
   }
 });
 
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const user = await User.findOne({ username, password });
+    if (user) {
+      res.status(200).json({ message: 'Login successful' });
+    } else {
+      res.status(401).json({ error: 'Invalid credentials' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Login failed' });
+  }
+});
 
 module.exports = router;

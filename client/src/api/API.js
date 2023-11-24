@@ -12,12 +12,12 @@ const API = {
     },
 
     createUser: function(payload) {
-        return axios.post(serverURL + "/api/register", payload);
+        return axios.post(`${serverURL}/api/register`, payload);
     },
     
-    getUser: function() {
-        return axios.get(serverURL + "/api/register");
-    },
+    loginUser: function(payload) {
+        return axios.post(`${serverURL}/api/login`, payload);
+    }
 }
 
 export default API;
