@@ -38,6 +38,9 @@ export default function Entry() {
     }
 
     const [{foodItems}, setFoodItems] = useState({ foodItems: []});
+
+    const [filteredItems, setFilteredItems] = useState([]);
+
     const [month, setMonth] = useState("");
     //const [date, setDate] = useState("");
     //const [year, setYear] = useState("");
@@ -65,16 +68,18 @@ export default function Entry() {
         fetchFoodItems();
     }, []);
 
-    // useEffect(() => {
-    //     if (month !== '') {
-    //         //const toDisplay = foodItems.filter((entry) => entry.month === Number(month));
-    //         //setFoodItems(toDisplay)
-    //         setFoodItems(foodItems.filter((entry) => entry.month === Number(month)));
-    //     }
-    //     else {
-    //         setFoodItems([...foodItems])
-    //     }
-    // }, [month, foodItems]);
+    useEffect(() => {
+        if (month !== '') {
+            const toDisplay = foodItems.filter((entry) => entry.month === Number(month));
+            setFilteredItems(toDisplay)
+        }
+        else {
+            setFilteredItems([])
+        }
+    }, [month, foodItems]);
+
+    const toDisplay = filteredItems.length ? filteredItems : foodItems;
+    const dest = [...toDisplay]
 
     return (
         <>
@@ -83,11 +88,14 @@ export default function Entry() {
                 <>Month: </>
                 <input type="text" style={inputStyle}
                     value={month}
-                    onChange={(event) => setMonth(event.target.value)}>
+                    onChange={(event) => {
+                        setMonth(event.target.value)
+                        console.log(event.target.value)
+                    }}>
                 </input>
             </span>
         </div>
-        {foodItems.map(t => (
+        {dest.map(t => (
             <div style={containerStyle}>
                 <div>
                     <h2 style={titleStyle}>{t.name}</h2>
