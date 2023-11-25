@@ -1,56 +1,54 @@
-// ./src/components/login-component/LoginForm.jsx
+// ./src/components/register-component/RegisterForm.jsx
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import API from '../../api/API';
-import styles from './loginform.module.css';
+import styles from './registerform.module.css';
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     // Reset previous error messages
     setError(null);
 
     // Create a payload with the entered credentials
-    const loginPayload = {
+    const registerPayload = {
       username,
       password,
     };
 
     try {
-      // Make a request to the login API endpoint
-      const response = await API.loginUser(loginPayload);
+      // Make a request to the register API endpoint
+      const response = await API.createUser(registerPayload);
 
-      // Handle the successful login response
+      // Handle the successful registration response
       console.log(response.data);
-      // Assuming the API response contains a token or some indicator of a successful login
-      // You might want to store tokens or user information in state or local storage
-
-      // Redirect to the Dashboard page upon successful login
-      router.push('/dashboard');
+      // You might want to handle the registration success in a way that suits your application
+      // For example, you can redirect the user to the login page after successful registration
+      router.push('/login');
     } catch (error) {
-      // Handle login error
-      console.error('Login failed:', error.response.data.error);
-      setError('Incorrect username or password. Please try again.');
+      // Handle registration error
+      console.error('Registration failed:', error.response.data.error);
+      setError('Registration failed. Please try again.');
     }
   };
 
-  const handleRegisterClick = () => {
-    // Redirect to the registration page
-    router.push('/register'); // Adjust the route according to your registration page route
+  const handleLoginRedirect = () => {
+    // Redirect to the login page
+    router.push('/login');
   };
 
   return (
-    <div className={styles.loginForm}>
+    <div className={styles.registerForm}>
       <div className={styles.container}>
-        <h1 className={styles.heading}>Please Login</h1>
+        <h1 className={styles.heading}>Register Here</h1>
         {error && <p className={styles.error}>{error}</p>}
-        <form className={styles.form} onSubmit={handleLogin}>
+        <form className={styles.form} onSubmit={handleRegister}>
           <div className={styles.inputGroup}>
             <label htmlFor="username">Username:</label>
             <input
@@ -72,15 +70,15 @@ const LoginForm = () => {
             />
           </div>
           <button className={styles.button} type="submit">
-            Login
+            Register
           </button>
         </form>
-        <p className={styles.registerText} onClick={handleRegisterClick}>
-          New User? Register Here
+        <p className={styles.registerText} onClick={handleLoginRedirect}>
+          Already a user? Return to Login
         </p>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
