@@ -42,8 +42,8 @@ export default function Entry() {
     const [filteredItems, setFilteredItems] = useState([]);
 
     const [month, setMonth] = useState("");
-    //const [date, setDate] = useState("");
-    //const [year, setYear] = useState("");
+    const [date, setDate] = useState("");
+    const [year, setYear] = useState("");
 
     //let toDisplay = [...foodItems];
 
@@ -69,14 +69,20 @@ export default function Entry() {
     }, []);
 
     useEffect(() => {
+        let filtered = foodItems;
+
         if (month !== '') {
-            const toDisplay = foodItems.filter((entry) => entry.month === Number(month));
-            setFilteredItems(toDisplay)
+            filtered = filtered.filter((entry) => entry.month === Number(month));
         }
-        else {
-            setFilteredItems([])
+        if (date !== '') {
+            filtered = filtered.filter((entry) => entry.date === Number(date));
         }
-    }, [month, foodItems]);
+        if (year !== '') {
+            filtered = filtered.filter((entry) => entry.year === Number(year));
+        }
+        
+        setFilteredItems(filtered);
+    }, [month, date, year, foodItems]);
 
     const toDisplay = filteredItems.length ? filteredItems : foodItems;
     const dest = [...toDisplay]
@@ -90,6 +96,22 @@ export default function Entry() {
                     value={month}
                     onChange={(event) => {
                         setMonth(event.target.value)
+                        console.log(event.target.value)
+                    }}>
+                </input>
+                <>Date: </>
+                <input type="text" style={inputStyle}
+                    value={date}
+                    onChange={(event) => {
+                        setDate(event.target.value)
+                        console.log(event.target.value)
+                    }}>
+                </input>
+                <>Year: </>
+                <input type="text" style={inputStyle}
+                    value={year}
+                    onChange={(event) => {
+                        setYear(event.target.value)
                         console.log(event.target.value)
                     }}>
                 </input>

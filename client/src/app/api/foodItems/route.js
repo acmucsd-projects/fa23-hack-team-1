@@ -3,9 +3,10 @@ import FoodItem from "@/models/foodItem";
 import {NextResponse} from "next/server";
 
 export async function POST(request) {
-    const {name, amount, calories} = await request.json();
+    const {name, amount, calories, month, date, year} = await request.json();
+    console.log('Received data:', {name, amount, calories, month, date, year});
     await connectMongoDB();
-    await FoodItem.create({name, amount, calories});
+    await FoodItem.create({name, amount, calories, month, date, year});
     return NextResponse.json({message: "Food Item Created"}, {status: 201});
 }
 

@@ -12,9 +12,14 @@ const foodItemSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    month: {
+        type: Number
+    },
     date: {
-        type: Number,
-        
+        type: Number
+    },
+    year: {
+        type: Number
     }
 })
 

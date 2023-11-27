@@ -31,13 +31,18 @@ export default function AddEntry() {
             return;
         }
 
+        let currentDate = new Date();
+        let month = currentDate.getMonth() + 1;
+        let date = currentDate.getDate();
+        let year = currentDate.getFullYear();
+
         try {
             const res = await fetch('http://localhost:3000/api/foodItems', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
                 },
-                body: JSON.stringify({name, amount, calories}),
+                body: JSON.stringify({name, amount, calories, month, date, year}),
             });
 
             if (res.ok) {
