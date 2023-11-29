@@ -1,0 +1,28 @@
+GET http://localhost:3000/foodItems
+
+###
+
+GET http://localhost:3000/foodItems/6544539121de415561a1fc35
+
+###
+
+POST http://localhost:3000/foodItems
+Content-Type: application/json
+
+{
+    "name": "French Fries",
+    "calories": 500
+}
+
+###
+
+DELETE http://localhost:3000/foodItems/6544539121de415561a1fc35
+
+###
+
+PATCH http://localhost:3000/foodItems/6544578bd7352d563e8b8ded
+Content-Type: application/json
+
+{
+    "amount": "1 serving"
+}

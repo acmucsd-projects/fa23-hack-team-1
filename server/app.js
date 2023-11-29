@@ -3,15 +3,23 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-const usersRouter = require('./routes/users');
+//defines routes
+// const usersRouter = require('./routes/users');
+// const notesRouter = require('./routes/notes');
+const foodItemsRoute = require('./routes/foodItems');
 
+
+//creates app variable
 const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/users', usersRouter);
+//webpage address and app path
+// app.use('/users', usersRouter);
+// app.use('/notes', notesRouter);
+app.use('/foodItems', foodItemsRoute);
 
 dotenv.config();
 
