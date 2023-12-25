@@ -1,16 +1,28 @@
-import styles from './navbar.module.css';
-import Link from 'next/link';
-const Navbar = () => {
-    return (
-        <div id= {styles.navbar}>
-            <div className={styles.title}>
-                <Link href="/">Home</Link>
-            </div>
-            <div className={styles.nav_buttons}>
-                <Link href="/">Other</Link>
-            </div>
-        </div>
-    )
-}
+import Link from "next/link";
 
-export default Navbar;
+export default function Navbar() {
+    const frameStyle = {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#2f3e4d',
+        padding: '0.5rem 2rem',
+    }
+    const homeStyle = {
+        color: '#fff',
+        fontWeight: 'bold',
+        textDecoration: 'none',
+    }
+    const addEntryStyle = {
+        color: '#000000',
+        backgroundColor: '#fff',
+        padding: '0.5rem',
+        textDecoration: 'none',
+    }
+    return (
+        <nav style={frameStyle}>
+            <Link style={homeStyle} href={'/'}>Home</Link>
+            <Link style={addEntryStyle} href={'/addEntry'}>Add Entry</Link>
+        </nav>
+    );
+}

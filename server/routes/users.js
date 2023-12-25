@@ -10,17 +10,16 @@ router.get("/register", async(req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const newUsername = req.body.username;
-  const newPassword = req.body.password;
-  
+  const { newUsername, newPassword } = req.body;
+
   // If any field is empty, let user know
   if (!newUsername || !newPassword) {
-    res.json({message: "empty"});
+    res.status(404).json({message: "empty"});
     //create modal box to warn about empty
     console.log("Cannot have empty fields");
   } 
   else if (await User.findOne({username: newUsername})){
-    res.json({message: "exist"});
+    res.status(401).json({message: "exist"});
     //handle existing user credentials by creating modal box saying username taken
     
     console.log("username already exist!")
@@ -31,7 +30,7 @@ router.post("/register", async (req, res) => {
     });
     newUser.save()
     .then(data => {
-      res.json(data);
+      res.status(200).json(data);
     })
     .catch(error => {
       res.json(error);

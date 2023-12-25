@@ -1,12 +1,14 @@
 // ./pages/dashboard.js
+"use client";
 import React from 'react';
+import DateNav from '../components/date-nav-component/DateNav.jsx'
 
-const Dashboard = () => {
-  return (
+const dashboard = () => {
+  return(
     <div>
-      <h1>Welcome to the Dashboard!</h1>
+      <DateNav />
     </div>
   );
-};
+}
 
-export default Dashboard;
+export default dashboard;

@@ -25,23 +25,28 @@ router.get('/', async (req, res) =>{
     }
 });
 
-router.post('/', async (req, res) =>{
-    const { food } = req.body;
-    const {name, calories, fat,cholesterol, sodium, carbohydrates, fiber, sugar, protein} = food;
-    if (!name || !calories || !fat || !cholesterol || !sodium || !carbohydrates || !fiber || !sugar || !protein){
-        res.status(400).json({error: "Invalid Input"});
-    }
-    else{
-        const newFood = await foodModel.create(food);
-        res.status(200).json({newFood});
+router.post('/', async (req, res) => {
+    const { name, amount, calories} = req.body;
+
+    if (!name || !calories) {
+        res.status(400).json({ error: "Invalid Input" });
+    } else {
+        try {
+            const newFood = await foodModel.create(req.body);
+
+            res.status(200).json({ newFood });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Internal Server Error" });
+        }
     }
 });
 
+
 router.put('/:id', async (req, res) =>{
     try {
-        const {name, calories, fat,cholesterol, sodium, carbohydrates, fiber, sugar, protein} = food;
-
-        if (!name || !calories || !fat || !cholesterol || !sodium || !carbohydrates || !fiber || !sugar || !protein){
+        const {name, amount, calories} = food;
+        if (!name || !calories){
             res.status(400).json({error: "Invalid Input"});
         }
         else{
@@ -63,7 +68,7 @@ router.delete('/:id', async (req, res) =>{
         const result = await foodModel.findByIdAndDelete(id);
 
         if (!result){
-            res.status(404).json({ message: 'Book not found'});
+            res.status(404).json({ message: 'Food not found'});
         }
         res.status(200).send({ message: 'Deleted successfully'});
     }

@@ -12,31 +12,59 @@ const RegisterForm = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
+  
     // Reset previous error messages
     setError(null);
-
+  
     // Create a payload with the entered credentials
     const registerPayload = {
-      username,
-      password,
+      newUsername: username,
+      newPassword: password,
     };
-
+  
     try {
       // Make a request to the register API endpoint
       const response = await API.createUser(registerPayload);
-
-      // Handle the successful registration response
-      console.log(response.data);
-      // You might want to handle the registration success in a way that suits your application
-      // For example, you can redirect the user to the login page after successful registration
-      router.push('/login');
+  
+      // Check the HTTP status code
+      if (response.status === 200) {
+        // Handle the successful registration response
+        console.log(response.data);
+        // You might want to handle the registration success in a way that suits your application
+        // For example, you can redirect the user to the login page after successful registration
+        router.push('/login');
+      } 
+      else if (response.status == 401){
+        console.error('Unexpected status code:', response.status);
+        setError('Username already exists. Please try again.');
+      }
+      else if (response.status == 404){
+        console.error('Unexpected status code:', response.status);
+        setError('Registration failed. Please try again.');
+      }
     } catch (error) {
-      // Handle registration error
-      console.error('Registration failed:', error.response.data.error);
-      setError('Registration failed. Please try again.');
+      // Log the entire error object to the console
+      console.error('Registration failed:', error);
+  
+      // Check if error.response exists before accessing its properties
+      if (error.response && error.response.data) {
+        // Check the error response and display appropriate error message
+        const errorMessage = error.response.data.message;
+  
+        if (errorMessage === 'empty') {
+          setError('Username and password cannot be empty. Please try again.');
+        } else if (errorMessage === 'exist') {
+          setError('Username already exists. Please try again.');
+        } else {
+          setError('Registration failed. Please try again.');
+        }
+      } else {
+        // Handle cases where error.response is undefined or doesn't have the expected structure
+        setError('Registration failed. Please try again.');
+      }
     }
   };
+  
 
   const handleLoginRedirect = () => {
     // Redirect to the login page
@@ -46,7 +74,7 @@ const RegisterForm = () => {
   return (
     <div className={styles.registerForm}>
       <div className={styles.container}>
-        <h1 className={styles.heading}>Register Here</h1>
+        <h1 className={styles.heading}>Please Register</h1>
         {error && <p className={styles.error}>{error}</p>}
         <form className={styles.form} onSubmit={handleRegister}>
           <div className={styles.inputGroup}>

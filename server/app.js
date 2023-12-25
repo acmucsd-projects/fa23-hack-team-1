@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const config = require('./config');
 const usersRouter = require('./routes/users');
 const foodRouter = require('./routes/food');
-const workoutRouter = require('./routes/workouts');
+const dateRouter = require('./routes/date');
 const app = express();
 const cors = require('cors');
 
@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use('/users', usersRouter);
 app.use('/foodRoute', foodRouter);
-app.use('/workouts', workoutRouter);
+app.use('/dateRoute', dateRouter);
 app.use('/api', usersRouter);
 
 dotenv.config();
