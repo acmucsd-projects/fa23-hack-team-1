@@ -2,13 +2,10 @@
 
 import React, { useState } from 'react';
 import API from '../../api/API';
+import styles from './removebutton.module.css';
 
 export default function RemoveBtn({ dateId, foodId, onRemove }) {
   const [confirming, setConfirming] = useState(false);
-
-  const buttonStyle = {
-    // Find out how to style a button
-  };
 
   const removeFoodItem = async () => {
     try {
@@ -23,13 +20,17 @@ export default function RemoveBtn({ dateId, foodId, onRemove }) {
   return (
     <div>
       {confirming ? (
-        <div>
-          <p>Confirm deletion?</p>
-          <button onClick={removeFoodItem}>Yes</button>
-          <button onClick={() => setConfirming(false)}>No</button>
+        <div className={styles.confirmationContainer}>
+          <p className={styles.confirmationMessage}>Confirm deletion?</p>
+          <button onClick={removeFoodItem} className={styles.confirmationButton}>
+            Yes
+          </button>
+          <button onClick={() => setConfirming(false)} className={styles.confirmationButton}>
+            No
+          </button>
         </div>
       ) : (
-        <button onClick={() => setConfirming(true)} style={buttonStyle}>
+        <button onClick={() => setConfirming(true)} className={styles.removeButton}>
           delete
         </button>
       )}

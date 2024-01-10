@@ -1,6 +1,5 @@
 // DateNavigator.jsx
 
-import Link from 'next/link';
 import RemoveBtn from '../entry-component/RemoveButton';
 import AddBtn from '../entry-component/AddButton';
 import React, { useState, useEffect } from 'react';
@@ -76,31 +75,36 @@ const DateNavigator = () => {
   const toDisplay = filteredItems.length ? filteredItems : foodItems;
 
   return (
-    <div className={styles.dateNavStyle}>
-    <h1 className={styles.titleStyle}>Diet Calendar</h1>
-      <div className={styles.container}>
-        <button onClick={handlePrevDay} className={`${styles.button}${styles.prevNextButton}`}>
+    <div className={styles.dateNavContainer}>
+      <div className={styles.dateNavStyle}>
+        <h1 className={styles.titleStyle}>Diet Calendar</h1>
+        <div className={styles.container}>
+          <button onClick={handlePrevDay} className={`${styles.button}${styles.prevNextButton}`}>
             &#x2B05;
-        </button>
-        <div className={styles.dateRectangle}>{currentDate.toDateString()}</div>
-        <button onClick={handleNextDay} className={`${styles.button}${styles.prevNextButton}`}>
+          </button>
+          <div className={styles.dateRectangle}>{currentDate.toDateString()}</div>
+          <button onClick={handleNextDay} className={`${styles.button}${styles.prevNextButton}`}>
             &#x27A1;
-        </button>
-      </div>
-      {toDisplay.map((t) => (
-        <div className={styles.containerStyle} key={t._id}>
-          <div>
-            <h2 className={styles.headerStyle}>{t.name}</h2>
-            <div>{t.amount}</div>
-            <div>{t.calories} calories</div>
-          </div>
-
-          <div>
-          <RemoveBtn dateId={apiDate._id} foodId={t._id} onRemove={handleRemoveFoodItem} />
-          </div>
+          </button>
         </div>
-      ))}
-      <AddBtn apiDate={apiDate} onAddFoodItem={handleAddFoodItem} />
+        {toDisplay.map((t) => (
+          <div className={styles.containerStyle} key={t._id}>
+            <div>
+              <h2 className={styles.headerStyle}>{t.name}</h2>
+              <div>{t.amount}</div>
+              <div>{t.calories} calories</div>
+            </div>
+            <div>
+              <RemoveBtn dateId={apiDate._id} foodId={t._id} onRemove={handleRemoveFoodItem} />
+            </div>
+          </div>
+        ))}
+        <AddBtn apiDate={apiDate} onAddFoodItem={handleAddFoodItem} />
+      </div>
+      <div className={styles.todayTotalContainer}>
+        <h2 className={styles.todayTotalTitle}>Today's Total Consumption:</h2>
+        <div className={styles.todayTotalDataContainer}>{/* Display your data here */}</div>
+      </div>
     </div>
   );
 };

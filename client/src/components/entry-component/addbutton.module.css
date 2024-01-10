@@ -1,0 +1,30 @@
+/* addbutton.module.css */
+
+.container {
+    display: flex;
+    flex-direction: row; /* Updated to horizontal direction */
+    align-items: center;
+    margin-left: 10px; /* Add margin to the left side */
+
+  }
+  
+  .inputField {
+    margin-right: 10px; /* Add some spacing between input fields */
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .addButton {
+    background-color: #4d4d4d;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addButton:hover {
+    background-color: #333;
+  }
+  

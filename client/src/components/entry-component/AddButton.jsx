@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import API from '../../api/API';
+import styles from './addbutton.module.css'
 
 const AddFoodItemForm = ({ apiDate, onAddFoodItem }) => {
   const [newFoodName, setNewFoodName] = useState('');
@@ -45,16 +46,31 @@ const AddFoodItemForm = ({ apiDate, onAddFoodItem }) => {
   };
 
   return (
-    <div>
-      <input type="text" placeholder="Food Name" value={newFoodName} onChange={handleNameChange} />
-      <input type="text" placeholder="Amount" value={newFoodAmount} onChange={handleAmountChange} />
+    <div className={styles.container}>
+      <input
+        type="text"
+        placeholder="Food Name"
+        value={newFoodName}
+        onChange={handleNameChange}
+        className={styles.inputField}
+      />
+      <input
+        type="text"
+        placeholder="Amount"
+        value={newFoodAmount}
+        onChange={handleAmountChange}
+        className={styles.inputField}
+      />
       <input
         type="text"
         placeholder="Calories"
         value={newFoodCalories}
         onChange={handleCaloriesChange}
+        className={styles.inputField}
       />
-      <button onClick={handleAddFoodItem}>Add Food Item</button>
+      <button onClick={handleAddFoodItem} className={styles.addButton}>
+        Add Food Item
+      </button>
     </div>
   );
 };
