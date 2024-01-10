@@ -1,7 +1,12 @@
 /* DateNavigator.module.css */
 
+
+
 .dateNavStyle{
     background-color: #c8d9ed;
+    background-image: url('https://www.fg-a.com/wallpapers/2017-3-geo-pattern.jpg');
+    background-size: cover;
+    background-position: center;
 }
 .container {
   display: flex;

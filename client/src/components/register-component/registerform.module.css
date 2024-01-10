@@ -7,20 +7,22 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #c8d9ed;
+    background-image: url('https://ik.imagekit.io/freeflo/production/33a5cf08-8c7c-455d-9bd4-8d952129fffb.png?tr=w-3840,q-75&alt=media&pr-true');
+    background-size: cover;
+    background-position: center;
   }
   
   .container {
     width: 250px; /* Adjust the width to your desired value */
     border-radius: 8px;
-    background-color: #f0f0f0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(60, 59, 59, 0.5);
+    box-shadow: 0 0 10px rgba(213, 85, 85, 0.1);
     padding: 20px;
   }
   
   /* Heading Styles */
   .heading {
-    color: #333;
+    color: white;
     font-size: 24px;
     margin-bottom: 20px;
   }
@@ -35,6 +37,7 @@
     margin-bottom: 8px;
     font-weight: bold;
     text-align: left;
+    color: white;
   }
   
   .input {
@@ -70,10 +73,9 @@
   /* Return to Login Text Styles */
   .registerText {
     text-align: center;
-    color: #333;
+    color: white;
     font-size: 14px;
     margin-top: 10px;
     cursor: pointer;
     text-decoration: underline;
   }
-  
