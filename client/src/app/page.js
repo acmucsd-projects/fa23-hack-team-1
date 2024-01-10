@@ -41,6 +41,7 @@ const Page = () => {
   useEffect(() => {
     const timeline_wrapper = document.querySelector('.timeline-wrapper');
     const timelines = document.querySelectorAll('.timeline li .data');
+    const timeline = document.querySelector('.timeline');
 
     // data will become visible on click
     const handleDataClick = (event) => {
@@ -55,13 +56,20 @@ const Page = () => {
       time.addEventListener('click', handleDataClick);              
     }
     
+    //const HandleMouseMove = () => {
+
+    //};
+
+    /* whenever you are moving your mouse, */
+    //timeline_wrapper.addEventListener('mousemove', HandleMouseMove);
+
     return () => {
       // removes the eventlisteners
       for (const time of timelines) {
         time.removeEventListener('click', handleDataClick);
       }
+      //timeline_wrapper.removeEventListener('mousemove', HandleMouseMove);
     };
-
   }, []);
 
   const items = [{date:"1/1/2024", food:"ham", amount: 1, calories: 1000},
@@ -71,10 +79,6 @@ const Page = () => {
   {date:"1/5/2024", food:"ham", amount: 1, calories: 1000}]
 
   return(
-    //call get on mongo db to get all the information there
-    //for each entry, were going to call our component with that information to make it
-    //and were gonna display that here
-    //also gonna have a plus button on the bottom right to add to mongo
     <div>
       <h1> Name's Food Log</h1>
       <div className="timeline-wrapper">
