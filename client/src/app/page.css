@@ -1,0 +1,189 @@
+:root{
+  --primary-color: #808080;
+}
+
+.global-styles {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:'poppins', sans-serif;
+}
+
+.timeline-wrapper::-webkit-scrollbar{
+  display: none;
+}
+
+.timeline-wrapper{
+  position: relative;
+  max-width: 100vw;
+  height: 88vh;
+  display: flex;
+
+  /* brings contents in div class in timeline-wrapper to the center of your screen */
+  justify-content: center;
+  align-items: center;
+
+  overflow-x: auto;
+}
+
+.timeline{
+  position: absolute;
+  height: .12rem;
+  padding: 0 4rem;
+  background-color: #888; /* the actual timeline bar */
+  list-style-type: none; /* removes bullet points from list */
+
+  --scale: 1; /* have to define scale variable to access in before */
+
+  /* puts everything into a line */
+  display: flex;
+}
+
+/* styling for list elements in timeline */
+.timeline li{
+  position: relative;
+  width: 20rem;
+}
+
+/* before and after share same css properties */
+.timeline li::before,
+.timeline li::after,
+.timeline li .title,
+.data{
+  position: absolute;
+  content: ""; /* empty string in contents means you aren't giving it anything */
+
+  /* trying to bring before element to center of its parent? */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(var(--scale));
+  
+  /* seamless transition when hovering between different titles */
+  transition: 0.5s ease;
+}
+
+.timeline li::before{
+  content: "";
+
+  top: 1rem; /* moves this tiny bar up */
+
+  display: inline-block;
+  width: 0.12rem; /* same width as class timeline height */
+  height: 1rem;
+  background-color: #888;
+}
+
+/* 
+  for before elements in an even position, 
+  will have some bars up and some down
+*/
+.timeline li:nth-child(even)::before{
+  top: -1rem;
+}
+
+/* changes little bar color when hovering */
+.timeline li:hover::before{
+  background-color: var(--primary-color);
+}
+
+.timeline li::after{
+  /* date heading */
+  content: attr(data-date);
+  top: -3.4rem;
+}
+
+/* offsets titles */
+.timeline li:nth-child(odd)::after{
+  top: 3.4rem;
+}
+
+/* title color changed to primary color */
+.timeline li:hover:after,
+.timeline li .title{
+  color: var(--primary-color);
+}
+
+.timeline li .title{
+  top: 2.4rem;
+  font: 600 1.1rem 'poppins', sans-serif;
+  /* title in single lime */
+  white-space: pre;
+  opacity: 0;
+}
+
+/* 
+  greater than symbol due to children of list items 
+  offsets title names when you hover (top / bottom)
+*/
+.timeline li:nth-child(odd) >.title{
+  top: -2.4rem;
+}
+
+.timeline li:hover .title{
+  /* when you hover over the title, it will become visible */
+  opacity: 2;
+}
+
+.data{
+  width: 1.3rem;
+  height: 1.3rem;
+  background-color: #8887;
+  color: black;
+  /* makes it round */
+  border-radius: 50%;
+
+  /* contents in box are distributed properly */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+/* round circle when hovering turns primary color */
+.timeline li:hover .data{
+  background-color: var(--primary-color);
+
+  /* circle gets bigger when hovering */
+  --scale: 1.2;
+  cursor: pointer; /* pointer hand icon shows up */
+  z-index: 200;
+}
+
+.data.show{
+  width: 22rem;
+  height: 22rem;
+  border-radius: 1rem;
+  padding: 1rem;
+
+  /* gradient of big box */
+  background-color: gray;
+  box-shadow: 0 0.1rem 0.4rem #0004;
+  z-index: 100; /* puts data behind box and not in front of it */
+}
+
+/*
+.data h3{
+  text-transform: capitalize; every beginning word character in h3 is capitalized 
+} */
+
+/* border around paragraph (can make it bigger) */
+.data p{
+  background-color: #fff3;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-left: 0.7rem;
+}
+
+.data.show p{
+  margin-left: 0;
+}
+
+.data .close{
+  align-self: flex-start;
+  background-color: #A9A9A9;
+  padding: 0.5rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+}

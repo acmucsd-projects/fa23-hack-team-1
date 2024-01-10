@@ -1,95 +1,95 @@
+"use client";
 import Image from 'next/image'
-import styles from './page.module.css'
+import './page.css'
+import React, { useEffect } from 'react';
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+const CreateButton = () => {
+  //const handleClick = () => {
+    
+  //};
+  // onClick={handleClick}
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+  return(
+    <button> 
+    Click to log food!
+    </button>
+  );
+};
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+// generates a timeline component
+const CreateEntry = (description) => {
+  //return our html code
+  return(
+    //create a timeline class then loop through our array and make a html box with that information
+    <ul className = "timeline">
+      {description.map((item, index) => (
+          <li data-date={item.date}>
+          <div className="data">
+              <h3>Food log for {item.date}</h3>
+              <p>Logged food: {item.food} <br /> - {item.amount} serving(s), {item.calories} calories</p>
+              {CreateButton()}
+          </div>
+        </li>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      ))}
+    </ul>
+  );
 }
+
+const Page = () => {
+
+  useEffect(() => {
+    const timeline_wrapper = document.querySelector('.timeline-wrapper');
+    const timelines = document.querySelectorAll('.timeline li .data');
+
+    // data will become visible on click
+    const handleDataClick = (event) => {
+      const{target} = event;
+      if(target.classList.contains('data')){
+        target.classList.toggle('show');
+      }
+    };
+
+    for(const time of timelines){
+      // when clicking on div with class name data, will add .data .show properties 
+      time.addEventListener('click', handleDataClick);              
+    }
+    
+    return () => {
+      // removes the eventlisteners
+      for (const time of timelines) {
+        time.removeEventListener('click', handleDataClick);
+      }
+    };
+
+  }, []);
+
+  const items = [{date:"1/1/2024", food:"ham", amount: 1, calories: 1000},
+  {date:"1/2/2024", food:"ham", amount: 1, calories: 1000},
+  {date:"1/3/2024", food:"ham", amount: 1, calories: 1000},
+  {date:"1/4/2024", food:"ham", amount: 1, calories: 1000},
+  {date:"1/5/2024", food:"ham", amount: 1, calories: 1000}]
+
+  return(
+    //call get on mongo db to get all the information there
+    //for each entry, were going to call our component with that information to make it
+    //and were gonna display that here
+    //also gonna have a plus button on the bottom right to add to mongo
+    <div>
+      <h1> Name's Food Log</h1>
+      <div className="timeline-wrapper">
+        <ul className="timeline">
+          <li>
+            <div className="data">
+            </div>
+          </li>
+        </ul>
+        {CreateEntry(items)}
+      </div>
+    </div>
+    
+  );
+
+};
+
+export default Page;
