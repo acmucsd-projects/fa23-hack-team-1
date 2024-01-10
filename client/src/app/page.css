@@ -1,5 +1,5 @@
 :root{
-  --primary-color: #808080;
+  --primary-color: #008080;
 }
 
 .global-styles {
@@ -30,7 +30,7 @@
   position: absolute;
   height: .12rem;
   padding: 0 4rem;
-  background-color: #888; /* the actual timeline bar */
+  background-color: #66b2b2; /* the actual timeline bar */
   list-style-type: none; /* removes bullet points from list */
 
   --scale: 1; /* have to define scale variable to access in before */
@@ -70,7 +70,7 @@
   display: inline-block;
   width: 0.12rem; /* same width as class timeline height */
   height: 1rem;
-  background-color: #888;
+  background-color: #008080;
 }
 
 /* 
@@ -127,7 +127,7 @@
 .data{
   width: 1.3rem;
   height: 1.3rem;
-  background-color: #8887;
+  background-color: #008080;
   color: black;
   /* makes it round */
   border-radius: 50%;
@@ -158,19 +158,19 @@
   padding: 1rem;
 
   /* gradient of big box */
-  background-color: gray;
+  background-color: #008080;
   box-shadow: 0 0.1rem 0.4rem #0004;
   z-index: 100; /* puts data behind box and not in front of it */
 }
 
-/*
-.data h3{
-  text-transform: capitalize; every beginning word character in h3 is capitalized 
-} */
+
+.title{
+  color: #66b2b2;
+} 
 
 /* border around paragraph (can make it bigger) */
 .data p{
-  background-color: #fff3;
+  background-color: #66b2b2;
   padding: 1rem;
   border-radius: 1rem;
   margin-left: 0.7rem;
@@ -182,7 +182,7 @@
 
 .data .close{
   align-self: flex-start;
-  background-color: #A9A9A9;
+  background-color: #006666;
   padding: 0.5rem 0.8rem;
   border-radius: 2rem;
   font-size: 1rem;

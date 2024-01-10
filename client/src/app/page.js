@@ -25,7 +25,7 @@ const CreateEntry = (description) => {
       {description.map((item, index) => (
           <li data-date={item.date}>
           <div className="data">
-              <h3>Food log for {item.date}</h3>
+              <h2>Food log for {item.date}</h2>
               <p>{item.food}: <br /> - {item.amount} serving(s), {item.calories} calories</p>
               {CreateButton()}
           </div>
@@ -79,7 +79,7 @@ const Page = () => {
 
   return(
     <div>
-      <h1> Name's Food Log</h1>
+      <h1 className="title"> Welcome To Your Food Log </h1>
       <div className="timeline-wrapper">
         <ul className="timeline">
           <li>
