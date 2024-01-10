@@ -1,13 +1,7 @@
-/* datenav.module.css */
+/* DateNavigator.module.css */
 
-.dateNavContainer {
-  display: flex;
-}
-
-.dateNavStyle {
-  background-color: #c8d9ed;
-  flex: 1; /* Take up the entire available width */
-  padding: 20px; /* Add padding for the blue background and page title */
+.dateNavStyle{
+    background-color: #c8d9ed;
 }
 
 .container {

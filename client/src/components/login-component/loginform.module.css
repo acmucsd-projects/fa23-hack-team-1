@@ -3,25 +3,63 @@
 /* General Styles */
 .loginForm {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('https://ik.imagekit.io/freeflo/production/33a5cf08-8c7c-455d-9bd4-8d952129fffb.png?tr=w-3840,q-75&alt=media&pr-true');
+  background-size: cover;
+  background-position: center;
+}
+
+.introduction {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #c8d9ed
+  position: relative;
+  padding-left: 23%;
+  padding-top: 125px;
+}
+
+.intro_image {
+  width: 300px;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.description {
+  text-align: center;
+  color: orange;
+  font: 1em cursive;
+  font-size: 22px;
+  font-weight: bold;
+  max-width: 500px;
 }
 
 .container {
   width: 250px;
   border-radius: 8px;
-  background-color: #f0f0f0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background-color: rgba(60, 59, 59, 0.5);
+  box-shadow: 0 0 10px rgba(213, 85, 85, 0.1);
+  padding: 50px;
+
+  height: 88vh;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
+
+
 
 /* Heading Styles */
 .heading {
-  color: #333;
-  font-size: 24px;
+  color: white;
+  font-size: 30px;
   margin-bottom: 20px;
 }
 
@@ -35,11 +73,14 @@
   margin-bottom: 8px;
   font-weight: bold;
   text-align: left;
+  color: white;
 }
 
 .input {
   width: 100%;
-  padding: 10px;
+  height: 40px;
+  font-size: 16px;
+  padding: 10px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -70,8 +111,8 @@
 /* Registration Text Styles */
 .registerText {
   text-align: center;
-  color: #333;
-  font-size: 14px;
+  color: white;
+  font-size: 15px;
   margin-top: 10px;
   cursor: pointer;
   text-decoration: underline;
