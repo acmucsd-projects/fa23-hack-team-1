@@ -26,7 +26,7 @@ const CreateEntry = (description) => {
           <li data-date={item.date}>
           <div className="data">
               <h3>Food log for {item.date}</h3>
-              <p>Logged food: {item.food} <br /> - {item.amount} serving(s), {item.calories} calories</p>
+              <p>{item.food}: <br /> - {item.amount} serving(s), {item.calories} calories</p>
               {CreateButton()}
           </div>
         </li>
@@ -37,7 +37,6 @@ const CreateEntry = (description) => {
 }
 
 const Page = () => {
-
   useEffect(() => {
     const timeline_wrapper = document.querySelector('.timeline-wrapper');
     const timelines = document.querySelectorAll('.timeline li .data');
